@@ -20,6 +20,8 @@ function generatePDF(){
 
     pdf.setFontSize(12);
     pdf.text("DESCRIÇÃO RAPIDA", 40, 35)
+
+    
     // Gerando a tabela automaticamente com os dados vindo da tabela do HTML.
     pdf.autoTable({
         html: '#myTable', 
@@ -34,10 +36,17 @@ function generatePDF(){
 
         headStyles: {
             halign : 'center',
-            valign : 'middle'
+            valign : 'middle',
+            fillColor: '#ffffff',
+            textColor: '#000000'
+        },
+
+        bodyStyles: {
+            textColor: '#000000'
         }
     })
-
+    pdf.line(14, 50, 195.8, 50, 'F')
+    pdf.line(14, 61.7, 195.8, 61.7, 'F')
     // Adicionando algumas caracteristicas
 
     // Salvando o relatorio em PDF.   
