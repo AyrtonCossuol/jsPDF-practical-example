@@ -10,6 +10,7 @@ function generatePDF(){
 
     // Criando a instancia pdf
     let pdf = new jspdf.jsPDF(properties)
+    var date
     
     //###########################################################################################
     // Criando um Cabeçalho padrão para o pdf.
@@ -58,9 +59,23 @@ function generatePDF(){
     pdf.line(14, 50, 195.8, 50, 'F')
     pdf.line(14, 61.7, 195.8, 61.7, 'F')
 
+    var text = "Relatório verificado pelos analistas e liberado pelo diretor - " + dataTemplate()
+    var valueCenterX = calculatedValueCenterX(pdf, text)
+    pdf.text(text, valueCenterX, 290);
+
+    handlePageNumbering(pdf)
+    
+    //###########################################################################################
+    // Salvando o relatorio em PDF.  
+    //########################################################################################### 
+    pdf.save("Table.pdf")
+}
+
+function dataTemplate(){
     var hoje = new Date()
     var stringDate = ''
     var stringMonth = ''
+    var stringDateFinal = ''
 
     if (hoje.getDate() < 10){
         stringDate = '0' + String(hoje.getDate())
@@ -74,9 +89,24 @@ function generatePDF(){
         stringMonth = String(hoje.getMonth() + 1)
     }
     
-    console.log(stringDate, stringMonth, hoje.getFullYear())
-    //###########################################################################################
-    // Salvando o relatorio em PDF.  
-    //########################################################################################### 
-    //pdf.save("Table.pdf")
+    stringDateFinal = stringDate + '/' + stringMonth + '/' + String(hoje.getFullYear())
+    
+    return stringDateFinal
+}
+
+function calculatedValueCenterX(pdf, text){
+    var textWidth = pdf.getStringUnitWidth(text) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
+    var textOffset = (pdf.internal.pageSize.width - textWidth) / 2;
+    
+    return textOffset
+}
+
+function handlePageNumbering(pdf){
+    const pageCount = pdf.internal.getNumberOfPages()
+    var count = 0
+    
+    for(count ; count < pageCount ; count++){
+        pdf.setPage(count)
+        pdf.text(String(count+1), 200, 290)
+    } 
 }
