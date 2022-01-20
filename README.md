@@ -1,6 +1,6 @@
 # jsPDF-practical-example
 
-### Um projeto com a ideia de demonstrar como pode ser simples e fácil a criação de um relatório com informações presentes em páginas HTML gerando simples (ou complexos) relatórios em PDF.
+O codigo do projeto já está finalizado, mas ainda falta terminar a parte escrita para a publicação no medium.
 
 ---
 <h4 align="center">
