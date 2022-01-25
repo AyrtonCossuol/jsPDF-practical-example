@@ -1,4 +1,4 @@
-# 🎉 - jsPDF Practical
+# 🎉 jsPDF Practical
 
 O codigo do projeto já está finalizado, mas ainda falta terminar a parte escrita para a publicação no medium.
 
